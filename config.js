@@ -1,8 +1,8 @@
-import path from 'path'
 export default {
+  base: 'D:/workplace1/ssr/mobile',
   exclude: ['node_modules'],
   alias: {
-    '@assets': './assets', // scss中需使用@起头的别名以避免webstorm引用地址报错
+    '@assets': './assets',
     '@scss': './assets/scss',
     '@pages': './pages',
     '@img': './assets/img',

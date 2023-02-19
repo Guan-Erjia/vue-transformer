@@ -31,4 +31,4 @@ const getAllfiles = (path) => { 	// 结果将存储到arr数组中
 }
 
 // getAllfiles('D:/workplace1/ssr/mobile/components/common/product')
-getAllfiles('D:/workplace1/ssr/mobile')
+getAllfiles(config.base)
