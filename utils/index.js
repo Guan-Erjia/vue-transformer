@@ -56,6 +56,9 @@ export const getOptionString = (script, option) => {
       case 'components':
         rawString = script.match(/components[\s\S]*}$/)
         break;
+      case 'props':
+        rawString = script.match(/props[\s\S]*}$/)
+        break;
       default:
         break;
     }
