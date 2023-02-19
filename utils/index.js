@@ -12,3 +12,9 @@ export const isDir = (filepath, item) => {  //判断是否是文件夹 Boolean
   let stat = fs.statSync(filepath + '/' + item.name)
   return stat.isDirectory()
 }
+
+export const outPut = (text, item) => {
+  const arr = item.path.split('/')
+  const pathStr = arr.slice(arr.length - 3, arr.length).join('/')
+  return `${text}${pathStr}`
+}

@@ -1,6 +1,6 @@
 import filterTemplatePipe from './filter-template.js'
 import filterScriptPipe from './filter-script.js'
-
+import spfScript from './spf-script.js'
 export default (item) => {
   if (item.ext === 'vue') {
     const template = item.value.match(/<template>([\s\S]*)<\/template>/gm)
@@ -9,6 +9,7 @@ export default (item) => {
     }
     const script = item.value.match(/<script>([\s\S]*)<\/script>/gm)
     if (script && script[0]) {
+      spfScript(script[0], item)//修改为单文件
       // filterScriptPipe(script[0], item)
     }
   }

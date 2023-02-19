@@ -1,4 +1,4 @@
-import { isFile, isDir,getFiles } from './utils.js/index.js'
+import { isFile, isDir,getFiles } from './utils/index.js'
 import config from './config.js'
 import pipe from './pipe/index.js'
 
