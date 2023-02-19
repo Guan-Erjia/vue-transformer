@@ -1,14 +1,17 @@
-启动命令：npm run dev || node main.js
+启动命令：
+npm run dev || node main.js
 
-项目输入路径：config.js/base
+项目输入路径：
+config.js/base
 
 pipe：vue  -- template -- plugins
 
            -- script   -- plugins
-           
+
       js   -- plugins
 
-文件节点:  value :  文件内字符串
+文件节点:  
+          value :  文件内字符串
 
           type  :  file/dir
           
