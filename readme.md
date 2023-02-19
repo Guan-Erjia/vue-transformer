@@ -13,12 +13,13 @@ pipe：
       js   -- plugins
 
 文件节点:  
-          value :  文件内字符串
 
-          type  :  file/dir
+      value :  文件内字符串
+
+      type  :  file/dir
           
-          path  :  绝对路径
+      path  :  绝对路径
           
-          name  :  文件全名
+      name  :  文件全名
 
 使用或调试需自行打开pipe函数，文件保存功能正在开发
