@@ -1,5 +1,5 @@
 启动命令：
-npm run dev || node main.js
+npm run start || node main.js
 
 项目输入路径：
 config.js/base
