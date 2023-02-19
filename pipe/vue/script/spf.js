@@ -1,5 +1,5 @@
 import fs from 'fs'
-import { outPut } from '../../utils/index.js'
+import { outPut } from '../../../utils/index.js'
 export default (script, item) => {
   const multiFile = script.match(/export\s+{ default }\s+from\s+['|"].+['|"]/)
   if (multiFile) {
