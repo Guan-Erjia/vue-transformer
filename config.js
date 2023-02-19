@@ -1,5 +1,5 @@
 export default {
-  base: 'D:/workplace1/ssr/mobile/components/mobile/rankingV2',
+  base: 'D:/workplace1/ssr/mobile/components/mobile',
   exclude: ['node_modules'],
   alias: {
     '@assets': './assets',
