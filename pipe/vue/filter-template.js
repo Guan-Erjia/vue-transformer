@@ -51,6 +51,6 @@ export default (template, item) => {
     bundles.forEach(each => {
       item.value = item.value.replaceAll(each.pre, each.rep)
     })
-    console.log(bundles)
+    console.log(`过滤器模板已替换-${item.path.split('/').pop()}`)
   }
 }

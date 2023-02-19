@@ -9,7 +9,7 @@ export default (item) => {
     }
     const script = item.value.match(/<script>([\s\S]*)<\/script>/gm)
     if (script && script[0]) {
-      filterScriptPipe(script[0], item)
+      // filterScriptPipe(script[0], item)
     }
   }
 }
