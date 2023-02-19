@@ -5,6 +5,7 @@ npm run dev || node main.js
 config.js/base
 
 pipe：
+
       vue  -- template -- plugins
 
            -- script   -- plugins
