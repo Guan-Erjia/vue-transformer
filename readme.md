@@ -4,7 +4,8 @@ npm run dev || node main.js
 项目输入路径：
 config.js/base
 
-pipe：vue  -- template -- plugins
+pipe：
+      vue  -- template -- plugins
 
            -- script   -- plugins
 
