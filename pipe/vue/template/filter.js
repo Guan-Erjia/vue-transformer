@@ -1,3 +1,4 @@
+import { outPut } from '../../../utils/index.js'
 class Bundle {
   constructor(pre, rep) {
     this.pre = pre
@@ -5,25 +6,23 @@ class Bundle {
   }
 }
 
-const resolveExpress = (exp, data) => {
+const resolveExpress = (pre, cur) => {
   let expression = ''
   let hasArgs = false
-  let operation = ''
-  if (exp.match(/[(].+[)]/)) {
+  if (cur.match(/[(].+[)]/)) {
     hasArgs = true
   }
   if (hasArgs) {
-    let operation = exp.split('(')[0]
-    expression = expression + operation + '(' + data
-    let args = exp.match(/[(](.*?)[)]/)[0].split(',')
+    let operation = cur.split('(')[0]
+    expression = operation + '(' + pre
+    let args = cur.match(/[(](.*?)[)]/)[0].split(',')
     args.forEach(each => {
-      console.log(each)
-      let arg = isNaN(each) ? each * 1 : each
+      let arg = isNaN(each) ? each.slice(1, each.length - 1) : each
       expression = expression + ', ' + arg
     })
   } else {
-    operation = exp
-    expression = expression + operation + '(' + data
+    let operation = cur
+    expression = expression + operation + '(' + pre
   }
   expression += ')'
   return expression
@@ -33,12 +32,18 @@ const findFilter = (str) => {
   const lines = str.match(/{{.+?}}/gm)
   const bundles = []
   if (lines) {
-    lines?.forEach(item => {
-      const block = item.match(/.+[ ]*[^|][|][^|][ ]*.+/)
-      if (block) {
-        const result = block[0].slice(2, block.length - 3)
-        const raw = result.split(/[ ]*[|][ ]*/)
-        bundles.push(new Bundle(result, resolveExpress(raw[1], raw[0])))
+    lines.forEach(each => {
+      if (each.includes('||')) {
+        console.log(`过滤器与 '||' 混合写法无法解析 ---- ${each}`)
+      } else {
+        const block = each.match(/.+[ ]*[^|][|][^|][ ]*.+/m)
+        if (block && block[0]) {
+          const chainFilters = block[0].trim().slice(2, block.length - 3).split(/[ ]?[|][ ]?/).map(each => each.trim())
+          const rep = chainFilters.reduce((pre, cur) => {
+            return resolveExpress(pre, cur)
+          })
+          bundles.push(new Bundle(block[0], `{{ ${rep} }}`))
+        }
       }
     })
   }
@@ -51,6 +56,7 @@ export default (template, item) => {
     bundles.forEach(each => {
       item.value = item.value.replaceAll(each.pre, each.rep)
     })
-    console.log(`过滤器模板已替换-${item.path.split('/').pop()}`)
+    console.log(bundles)
+    console.log(outPut('过滤器模板已替换', item))
   }
 }
