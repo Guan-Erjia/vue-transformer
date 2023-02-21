@@ -1,5 +1,5 @@
 export default {
-  base: 'D:/workplace1/ssr/mobile/components/mobile',
+  base: 'D:/workplace1/ssr/mobile/components',
   exclude: ['node_modules'],
   alias: {
     '@assets': './assets',
