@@ -1,9 +1,8 @@
+import parseHTML from '../../../utils/parse-html.js'
+
 export default (template, item) => {
-  const tags = template.match(/<.+?v-for.+?>/gm)
-  if(tags) {
-    tags.forEach(item=>{
-      
-    })
-    console.log(tags)
+  const target = template.match(/<.+v-for.+?>/gm)
+  if (target) {
+    target.forEach(each => parseHTML(template, each))
   }
 }
