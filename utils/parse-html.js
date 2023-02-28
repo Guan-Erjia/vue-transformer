@@ -21,11 +21,10 @@ const selfTag = (tag) => {
 
 const parseHTML = (template, find) => {
   const tagList = template.match(/<.+?>\s*/gm)
-  const targetList = tagList.filter(item => item.includes(find))
-  targetList.forEach(each => {
-    const beforeList = tagList.slice(0, tagList.findIndex(each1 => each1.includes(each)) - 1)
-    const startList = tagList.slice(tagList.findIndex(each1 => each1.includes(each)))
-    let target = null
+  const target = tagList.filter(item => item.includes(find))[0]
+  if (target) {
+    const beforeInner = tagList.slice(0, tagList.findIndex(each1 => each1.includes(target)) - 1)
+    const startList = tagList.slice(tagList.findIndex(each1 => each1.includes(target)))
     let open = 0
     let close = 0
     for (let i = 0; i < startList.length; i++) {
@@ -37,12 +36,12 @@ const parseHTML = (template, find) => {
         close++
       }
       if (open === close) {
-        target = startList.slice(0, i + 1)
-        console.log(target.join(''))
-        break
+        const targetInner = startList.slice(0, i + 1)
+        const lastsInner = startList.slice(i + 1)
+        return { beforeInner, targetInner, lastsInner }
       }
     }
-  })
+  }
 }
 
 export default parseHTML
