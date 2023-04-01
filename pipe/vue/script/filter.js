@@ -28,7 +28,6 @@ export default (script, item) => {
     }
   }
   if (bundles.length) {
-    console.log(bundles)
     item.bundle.push(...bundles)
   }
 }

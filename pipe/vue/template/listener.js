@@ -8,6 +8,5 @@ export default (template, item) => {
     item.bundle.push(new Bundle(/export default[\s]*{/,
       `export default {
   inheritAttrs: false,`))
-    console.log(item.bundle)
   }
 }

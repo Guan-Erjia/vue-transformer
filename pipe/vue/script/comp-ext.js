@@ -5,7 +5,6 @@ export default (script, item) => {
   if (componentsString?.trim()) {
     item.value = item.value.replace(componentsString, '')
     let components = trimOption(componentsString).split(',').map(item => item.trim())
-    // console.log(components)
     const imports = script.match(/import\s.+\sfrom[\s]+['|"].+['|"]/g)
     if (imports) {
       const vueImports = imports.filter(each => { //过滤有效组件引入
@@ -20,7 +19,7 @@ export default (script, item) => {
       })
       if (bundles.length) {
         item.bundle.push(...bundles)
-        // console.log(bundles)
+        console.log(bundles)
       }
     }
   }
