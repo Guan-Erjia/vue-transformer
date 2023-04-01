@@ -1,10 +1,6 @@
 import { outPut } from '../../../utils/index.js'
-class Bundle {
-  constructor(pre, rep) {
-    this.pre = pre
-    this.rep = rep
-  }
-}
+import { Bundle } from '../../../utils/index.js'
+
 
 const resolveExpress = (pre, cur) => {
   let expression = ''
@@ -53,10 +49,7 @@ const findFilter = (str) => {
 export default (template, item) => {
   const bundles = findFilter(template)
   if (bundles.length) {
-    bundles.forEach(each => {
-      item.value = item.value.replaceAll(each.pre, each.rep)
-    })
-    console.log(bundles)
+    item.bundle.push(...bundles)
     console.log(outPut('过滤器模板已替换', item))
   }
 }

@@ -1,10 +1,5 @@
 import { getOptionString, trimOption } from '../../../utils/index.js'
-class Bundle {
-  constructor(pre, rep) {
-    this.pre = pre
-    this.rep = rep
-  }
-}
+import { Bundle } from '../../../utils/index.js'
 export default (script, item) => {
   const componentsString = getOptionString(script, 'components')
   if (componentsString?.trim()) {
@@ -23,10 +18,10 @@ export default (script, item) => {
           vueImport.endsWith('"') ?
             vueImport.slice(0, vueImport.length - 1) + '.vue"' : vueImport.slice(0, vueImport.length - 1) + ".vue'")
       })
-      bundles.forEach(each => {
-        item.value = item.value.replaceAll(each.pre, each.rep)
-      })
-      // console.log(bundles)
+      if (bundles.length) {
+        item.bundles.push(...bundles)
+        // console.log(bundles)
+      }
     }
   }
 }

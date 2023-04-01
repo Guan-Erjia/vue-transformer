@@ -78,3 +78,30 @@ export const trimOption = (optionString) => { //处理为方法文本
   trimString = trimString.slice(1, trimString.length - 1)
   return trimString
 }
+
+export const judgClose = (str, modify = ['(', ')']) => {
+  let lmodify = modify[0]
+  let rmodify = modify[1]
+  let temp = ''
+  let lcount = 0
+  let rcount = 0
+  for (let i = 0; i < str.length; i++) {
+    let curstr = str[i]
+    if (curstr === lmodify) {
+      lcount++
+    } else if (curstr === rmodify) {
+      rcount++
+    }
+    temp += str[i]
+    if (lcount === rcount && lcount > 0) {
+      return temp
+    }
+  }
+}
+
+export class Bundle {
+  constructor(pre, rep) {
+    this.pre = pre
+    this.rep = rep
+  }
+}

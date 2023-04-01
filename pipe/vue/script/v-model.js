@@ -1,31 +1,25 @@
 import { getOptionString } from "../../../utils/index.js";
-class Bundle {
-  constructor(pre, rep) {
-    this.pre = pre
-    this.rep = rep
-  }
-}
+import { Bundle } from '../../../utils/index.js'
+
 export default (script, item) => {
+  const bundles = []
   const props = getOptionString(script, 'props')
   if (props) {
     const valueProp = props.match(/[\s|\S]+value\s*:\s*.*?,/g)
     if (valueProp) {
-      const bundles = valueProp.map(each => {
-        return new Bundle(each, each.replace('value', 'modelValue'))
+      valueProp.forEach(each => {
+        bundles.push(new Bundle(each, each.replace('value', 'modelValue')))
       })
-      bundles.forEach(each => {
-        item.value = item.value.replace(each.pre, each.rep)
-      })
-      console.log(bundles)
     }
   }
   const emits = script.match(/\$emit\(['|"]input['|"].*,/g)
   if (emits) {
-    const bundles = emits.map(each => {
+    emits.forEach(each => {
       const rep = each.replace('input', 'update:modelValue')
-      return new Bundle(each, rep)
+      bundles.push(new Bundle(each, rep))
     })
-    bundles.forEach(each => item.value = item.value.replaceAll(each.pre, each.rep))
-    console.log(bundles)
+  }
+  if (bundles.length) {
+    item.bundle.push(...bundles)
   }
 }
