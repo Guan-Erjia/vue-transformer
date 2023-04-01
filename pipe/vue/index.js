@@ -26,6 +26,7 @@ export default (item) => {
     // vModelScriptPipe(script[0], item)
   }
   if (item.bundle.length) {
+    console.log(item.bundle)
     let temp = item.value
     item.bundle.forEach(item => {
       temp = temp.replace(item.pre, item.rep)

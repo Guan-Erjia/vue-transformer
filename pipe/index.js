@@ -7,7 +7,7 @@ export default (item) => {
     item.bundle = []
     if (item.ext === 'vue') {
       vuePlugin(item)
-      // fs.writeFileSync(item.path, item.value)
+      fs.writeFileSync(item.path, item.value)
       // fs.writeFileSync(item.path, item.value)     !!!!!执行前请使用git备份
     }
   } else if (item.type === 'dir') {
