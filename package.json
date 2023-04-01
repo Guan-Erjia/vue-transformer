@@ -6,5 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node main.js"
+  },
+  "dependencies": {
+    "md5": "^2.3.0"
   }
 }

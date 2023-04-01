@@ -100,7 +100,7 @@ export const judgClose = (str, modify = ['(', ')']) => {
 }
 
 export class Bundle {
-  constructor(pre, rep) {
+  constructor(pre, rep = '') {
     this.pre = pre
     this.rep = rep
   }
