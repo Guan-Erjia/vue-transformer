@@ -1,6 +1,7 @@
-import { isFile, isDir,getFiles } from './utils/index.js'
+import { isFile, isDir, getFiles } from './utils/index.js'
 import config from './config.js'
 import pipe from './pipe/index.js'
+import fs from 'fs'
 
 
 const mkFileInfo = (path, item) => {
@@ -17,6 +18,7 @@ const mkFileInfo = (path, item) => {
 
 //递归遍历所有文件夹和文件
 let time = 0
+let log = '\n'
 const getAllfiles = (path) => { 	// 结果将存储到arr数组中
   let filesArr = getFiles(path);     // 获取目录下所有文件
   filesArr.forEach(item => {
@@ -25,10 +27,15 @@ const getAllfiles = (path) => { 	// 结果将存储到arr数组中
       const fileInfo = mkFileInfo(path, item)
       if (fileInfo) {
         pipe(fileInfo)
+        if (fileInfo.bundle) {
+          fileInfo.bundle.forEach(each => {
+            log = log + (fileInfo.path + '---' + each.pre + '--->' + each.rep + '\n')
+          })
+        }
       }
     }
   })
 }
 
-// getAllfiles('D:/workplace1/ssr/mobile/components/common/product')
 getAllfiles(config.base)
+fs.writeFileSync('./log.txt', log)
