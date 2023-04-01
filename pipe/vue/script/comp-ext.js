@@ -7,7 +7,7 @@ export default (script, item) => {
     let components = trimOption(componentsString).split(',').map(item => item.trim())
     // console.log(components)
     const imports = script.match(/import\s.+\sfrom[\s]+['|"].+['|"]/g)
-    if (imports.length) {
+    if (imports) {
       const vueImports = imports.filter(each => { //过滤有效组件引入
         return components.some(each1 => each.includes(each1))
       }).filter(each => {
@@ -19,7 +19,7 @@ export default (script, item) => {
             vueImport.slice(0, vueImport.length - 1) + '.vue"' : vueImport.slice(0, vueImport.length - 1) + ".vue'")
       })
       if (bundles.length) {
-        item.bundles.push(...bundles)
+        item.bundle.push(...bundles)
         // console.log(bundles)
       }
     }

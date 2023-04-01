@@ -17,7 +17,7 @@ export default (script, item) => {
   if (target) {
     const bundles = target.map(each => judgClose(each)).map(each => new Bundle(each, replaceFunc(each)))
     if (bundles.length) {
-      item.bundles.push(...bundles)
+      item.bundle.push(...bundles)
       console.log(bundles)
     }
   }

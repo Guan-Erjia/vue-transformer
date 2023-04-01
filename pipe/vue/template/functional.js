@@ -18,7 +18,7 @@ export default (template, item) => {
   }
 </script>
 ` + temp
-    console.log(outPut('已替换为普通组件--  ', temp))
+    console.log(outPut('已替换为普通组件--  ', item))
     item.bundle.push(new Bundle(item.value, temp))
   }
 }
